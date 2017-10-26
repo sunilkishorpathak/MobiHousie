@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+    <head> <title> Diwali Tickets </title></head>
+
+    <link rel="stylesheet" type="text/css" href="ticket.css">
+
+    <script>
+        //document.write("Hello world");
+        var diwaliItems = [
+            "FullJhadi",
+            "Anar",
+            "Bomb",
+            "Rocket",
+            "Laddoo",
+            "Barfi",
+            "Gulab Jamun",
+            "Rasmalai",
+            "Ganesh",
+            "Laxmi",
+            "Diya",
+            "Bati",
+            "Toran",
+            "Flowers",
+            "Agarbati",
+            "Gift",
+            "Light",
+            "Dhoop",
+            "Ram",
+            "Siya",
+            "Hanuma",
+            "Ravan",
+            "Jalebi",
+            "Kaju",
+            "Badam",
+            "Kismis",
+            "Apple",
+            "Banana",
+            "Grapes",
+            "Pears",
+            "Candle"
+
+        ];
+        var LASTINDEX = 31;
+
+        function fullTicket() {
+            document.write("<br/>******************* FULL ITEMS **********************<br/>")
+            document.write("<p style=\"font-size:24px;padding-left: 3cm\">");
+            for (var i = 0; i < LASTINDEX; ++i) {
+                document.write("<br/>");
+                document.write(diwaliItems[i]);
+            }
+            document.write("</p>");
+        }
+
+        function singleTicket(ticketno) {
+            //15 random items on one tickets
+            document.write("<br/><br/> Single Ticket ");
+            document.write(ticketno);
+            document.write("<hr>");
+
+            var itemSeq = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 35, 38, 39];
+
+            var lastIndex = LASTINDEX;
+            var curLastIndex = LASTINDEX;
+
+            for (var i=0; i < 15; ++i) {
+                var randomNo = Math.floor(Math.random() * LASTINDEX);
+
+                //swap number with currentLastIndex
+                var temp = itemSeq[curLastIndex];
+                itemSeq[curLastIndex] = itemSeq[randomNo];
+                itemSeq[randomNo] = temp;
+
+                curLastIndex = curLastIndex - 1;
+            }
+            //print all the items from curLastIndex to lastIndex
+            document.write("<p style=\"font-size:20px;color:blue;padding-left: 2cm\">");
+            while (curLastIndex <= lastIndex) {
+                document.write(diwaliItems[itemSeq[curLastIndex]]);
+                document.write("<br/>")
+                curLastIndex = curLastIndex + 1;
+            }
+            document.write("</p>");
+
+
+            //creating table
+            /*
+            document.write("<br/>Table <br/>");
+            document.write("<table style=border:1px;table-layout: fixed;width: 100px;><tr><td>sunil</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>"
+                        + "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>"
+                        + "<table><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+             */
+        }
+
+        //ticket in tabular format
+        function singleTabularTicket(ticketno) {
+
+            var tableID = "tableid" + ticketno;
+            document.write("<br/><br/><br/>");
+            document.write("<table align=\"center\" id=" +
+                "table2" +
+                    "<tr>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "</tr>" +
+                    "<tr>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "</tr>" +
+                    "<tr>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "<td align=\"center\">--</td>" +
+                    "</tr>" +
+                "</table>");
+
+
+            var tablerow = document.getElementById("table2").rows[rowIndex].cells;
+            tablerow[1].innerHTML = "NEW CONTENT";
+
+            /*
+            var itemSeq = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 35, 38, 39];
+
+            var lastIndex = LASTINDEX;
+            var curLastIndex = LASTINDEX;
+
+            for (var i=0; i < 15; ++i) {
+                var randomNo = Math.floor(Math.random() * LASTINDEX);
+
+                //swap number with currentLastIndex
+                var temp = itemSeq[curLastIndex];
+                itemSeq[curLastIndex] = itemSeq[randomNo];
+                itemSeq[randomNo] = temp;
+
+                curLastIndex = curLastIndex - 1;
+            }
+
+
+            while (curLastIndex <= lastIndex) {
+                //divide the itemSeq[curLastIndex] with 3 to get the row index and with 9 to get the col index
+                var rowIndex = itemSeq[curLastIndex] % 3;
+                var colIndex = itemSeq[curLastIndex] % 9;
+
+                //Get the row cells of the corresponding rowIndex
+                var tablerow = document.getElementById(tableID).rows[rowIndex].cells;
+              //  tablerow[1].innerHTML = "NEW CONTENT";
+
+                curLastIndex = curLastIndex + 1;
+            }
+            */
+        }
+        //Creating tickets
+        function printTickets() {
+            for (var i = 0; i < 10; i++) {
+                //singleTicket(i);
+              //  singleTabularTicket(i);
+            }
+        }
+    </script>
+
+    <body face="courier, serif">
+        <script>fullTicket()</script>
+
+        <script>printTickets()</script>
+        <input type="button" onclick="singleTabularTicket(5)" value="ClickMe" />
+
+    </body>
+</html>
