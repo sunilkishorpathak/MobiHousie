@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head> <title> Diwali Tickets </title></head>
+    <head> <title> Diwali Tickets </title></head>  
 
     <link rel="stylesheet" type="text/css" href="ticket.css">
 
@@ -52,94 +52,18 @@
             document.write("</p>");
         }
 
-        function singleTicket(ticketno) {
-            //15 random items on one tickets
-            document.write("<br/><br/> Single Ticket ");
-            document.write(ticketno);
-            document.write("<hr>");
-
-            var itemSeq = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 35, 38, 39];
-
-            var lastIndex = LASTINDEX;
-            var curLastIndex = LASTINDEX;
-
-            for (var i=0; i < 15; ++i) {
-                var randomNo = Math.floor(Math.random() * LASTINDEX);
-
-                //swap number with currentLastIndex
-                var temp = itemSeq[curLastIndex];
-                itemSeq[curLastIndex] = itemSeq[randomNo];
-                itemSeq[randomNo] = temp;
-
-                curLastIndex = curLastIndex - 1;
-            }
-            //print all the items from curLastIndex to lastIndex
-            document.write("<p style=\"font-size:20px;color:blue;padding-left: 2cm\">");
-            while (curLastIndex <= lastIndex) {
-                document.write(diwaliItems[itemSeq[curLastIndex]]);
-                document.write("<br/>")
-                curLastIndex = curLastIndex + 1;
-            }
-            document.write("</p>");
-
-
-            //creating table
-            /*
-            document.write("<br/>Table <br/>");
-            document.write("<table style=border:1px;table-layout: fixed;width: 100px;><tr><td>sunil</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>"
-                        + "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>"
-                        + "<table><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
-             */
-        }
-
         //ticket in tabular format
         function singleTabularTicket(ticketno) {
+        }
 
-            var tableID = "tableid" + ticketno;
-            document.write("<br/><br/><br/>");
-            document.write("<table align=\"center\" id=" +
-                "table2" +
-                    "<tr>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "</tr>" +
-                    "<tr>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "</tr>" +
-                    "<tr>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "<td align=\"center\">--</td>" +
-                    "</tr>" +
-                "</table>");
+        //set ticket colors
+        function setTicketColor(ticketid, color) {
+            document.getElementById(ticketid).style.backgroundColor=color;
+        }
 
-
-            var tablerow = document.getElementById("table2").rows[rowIndex].cells;
-            tablerow[1].innerHTML = "NEW CONTENT";
-
-            /*
-            var itemSeq = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 35, 38, 39];
+        //populate table with random data in row and column
+        function populateTable(tableid) {
+            var itemSeq = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
 
             var lastIndex = LASTINDEX;
             var curLastIndex = LASTINDEX;
@@ -162,27 +86,44 @@
                 var colIndex = itemSeq[curLastIndex] % 9;
 
                 //Get the row cells of the corresponding rowIndex
-                var tablerow = document.getElementById(tableID).rows[rowIndex].cells;
-              //  tablerow[1].innerHTML = "NEW CONTENT";
+                var tablerow = document.getElementById(tableid).rows[rowIndex].cells;
+                tablerow[colIndex].innerHTML = diwaliItems[itemSeq[curLastIndex]];
 
                 curLastIndex = curLastIndex + 1;
             }
-            */
+            //write some data
         }
+
         //Creating tickets
         function printTickets() {
+            //store the id and there color
+            var ticketIDs = ["TicketId01", "TicketId02", "TicketId03", "TicketId04", "TicketId05", "TicketId06", "TicketId07", "TicketId08", "TicketId09", "TicketId10"];
+            var ticketColors = ["#e6faff", "#007a99", "#99ffbb", "#ffdd99", "#eeccff", "#d9d9d9", "#d9b3ff"];
+            var COLORLASTINDEX = 7;
             for (var i = 0; i < 10; i++) {
-                //singleTicket(i);
-              //  singleTabularTicket(i);
+                var colorIndex = Math.floor(Math.random() * COLORLASTINDEX);
+                setTicketColor(ticketIDs[i], ticketColors[colorIndex]);
+                populateTable(ticketIDs[i]);
             }
         }
+
     </script>
 
     <body face="courier, serif">
-        <script>fullTicket()</script>
+    <br/><br/><table id="TicketId01" align="center"><tr><td align="center";>--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr><tr><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr><tr><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr></table>
+    <br/><br/><table id="TicketId02" align="center"><tr><td align="center";>--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr><tr><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr><tr><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr></table>
+    <br/><br/><table id="TicketId03" align="center"><tr><td align="center";>--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr><tr><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr><tr><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr></table>
+    <br/><br/><table id="TicketId04" align="center"><tr><td align="center";>--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr><tr><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr><tr><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr></table>
+    <br/><br/><table id="TicketId05" align="center"><tr><td align="center";>--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr><tr><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr><tr><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr></table>
+    <br/><br/><table id="TicketId06" align="center"><tr><td align="center";>--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr><tr><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr><tr><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr></table>
+    <br/><br/><table id="TicketId07" align="center"><tr><td align="center";>--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr><tr><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr><tr><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr></table>
+    <br/><br/><table id="TicketId08" align="center"><tr><td align="center";>--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr><tr><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr><tr><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr></table>
+    <br/><br/><table id="TicketId09" align="center"><tr><td align="center";>--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr><tr><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr><tr><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr></table>
+    <br/><br/><table id="TicketId10" align="center"><tr><td align="center";>--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr><tr><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr><tr><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td><td align="center">--</td></tr></table>
 
-        <script>printTickets()</script>
-        <input type="button" onclick="singleTabularTicket(5)" value="ClickMe" />
+
+
+    <input type="button" onclick="printTickets()" value="ClickMe" />
 
     </body>
 </html>
