@@ -56,6 +56,75 @@
         function singleTabularTicket(ticketno) {
         }
 
+        //fill lunch
+      
+        //fill breakfast only
+        function populateBreakfast(num1, num2, num3, num4, num5, tableid) {
+            var tempArray = [
+                [0, 0, 0],
+                [0, 0, 0],
+                [0, 0, 0]
+            ];
+            var tempArgArray = [num1, num2, num3, num4, num5];
+
+            //go for each row and set one number in that, with other constraint
+            for (var i=0; i < 3; ++i) {
+                var colArray = [0, 1, 2];
+                var j = 3;
+                while (true) {
+                    var ranColumn = Math.floor(Math.random() * j);
+                    //swap this index in colArray
+                    var temp = colArray[ranColumn];
+                    colArray[ranColumn] = colArray[j-1];
+                    colArray[j-1] = temp;
+
+                    //the column shouldn't have any other element
+                    if ((tempArray[0][ranColumn] == 0) && (tempArray[1][ranColumn] == 0) && (tempArray[2][ranColumn] == 0)) {
+                        tempArray[i][ranColumn] = tempArgArray[i];
+
+                        break;
+                    }
+                    j = j - 1;
+                    if (j == 0) break;
+                }
+            }
+            //put other zero, one or two numbers at any place
+            var totalNumPlaced = 3;
+            var extraNumberCount = Math.floor(Math.random() * 3);
+            if (extraNumberCount == 0) {
+                extraNumberCount = 1;
+            }
+
+            for (var i = 0; i < extraNumberCount; ++i ) {
+                while (true) {
+                    var ranCol = Math.floor(Math.random() * 3);
+                    var ranRow = Math.floor(Math.random() * 3);
+
+                    if (tempArray[ranRow][ranCol] == 0) {
+                        tempArray[ranRow][ranCol] = tempArgArray[totalNumPlaced];
+                        totalNumPlaced = totalNumPlaced + 1;
+                        break;
+                    }
+                }
+
+
+            }
+            //document.write("<br/>");
+            //document.write(tempArray);
+
+            //now set the values in table
+            for (var i=0; i < 3; ++i) {
+                for (var j=0; j < 3; ++j) {
+                    if (tempArray[i][j] != 0 ){
+                        var tablerow = document.getElementById(tableid).rows[i].cells;
+                        tablerow[j].innerHTML = diwaliItems[tempArray[i][j]];
+                    }
+                }
+            }
+
+        }
+
+
         //set ticket colors
         function setTicketColor(ticketid, color) {
             document.getElementById(ticketid).style.backgroundColor=color;
@@ -68,7 +137,8 @@
             var lastIndex = LASTINDEX;
             var curLastIndex = LASTINDEX;
 
-            for (var i=0; i < 15; ++i) {
+            //shuffle the above
+            for (var i=0; i < LASTINDEX; ++i) {
                 var randomNo = Math.floor(Math.random() * LASTINDEX);
 
                 //swap number with currentLastIndex
@@ -79,7 +149,7 @@
                 curLastIndex = curLastIndex - 1;
             }
 
-
+            /*
             while (curLastIndex <= lastIndex) {
                 //divide the itemSeq[curLastIndex] with 3 to get the row index and with 9 to get the col index
                 var rowIndex = itemSeq[curLastIndex] % 3;
@@ -87,11 +157,16 @@
 
                 //Get the row cells of the corresponding rowIndex
                 var tablerow = document.getElementById(tableid).rows[rowIndex].cells;
-                tablerow[colIndex].innerHTML = diwaliItems[itemSeq[curLastIndex]];
-
-                curLastIndex = curLastIndex + 1;
+                //tablerow[colIndex].innerHTML = diwaliItems[itemSeq[curLastIndex]];
+                var sweetName = 'images/jalebi.jpg';
+               // var tempName = "<img src=" + "images/jalebi.jpg" + "alt='hello'/>;"
+               // tablerow[colIndex].innerHTML = "<img src=images/jalebi.jpg/>"
+                 //   curLastIndex = curLastIndex + 1;
             }
-            //write some data
+            */
+            populateBreakfast(itemSeq[5], itemSeq[7], itemSeq[9], itemSeq[11], itemSeq[13], tableid);
+            //populateLunch(itemSeq[2], itemSeq[4], itemSeq[6], itemSeq[16], itemSeq[18], tableid);
+            //populateDinner(itemSeq[4], itemSeq[8], itemSeq[12], itemSeq[17], itemSeq[19]);
         }
 
         //Creating tickets
