@@ -1,18 +1,32 @@
 table{
     border: 1px solid black;
     table-layout: fixed;
-    width: 1000px;
+    width: 700px;
 }
 
 th, td {
     border: .2px solid black;
-    width: 80px;
+    width: 50px;
     padding: 0;
-    height: 80px;
+    height: 50px;
     border: 1px solid black;
 }
 
 td {
     align:center;
 
+}
+
+p {
+    align:center;
+}
+
+hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
 }
